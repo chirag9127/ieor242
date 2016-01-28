@@ -13,9 +13,6 @@ class ParseFiling(object):
         soup = bs4.BeautifulSoup(self.txt)
         scores = soup.find_all(text=re.compile('DISCUSSION AND ANALYSIS'))
         divs = [score.parent.parent.parent.parent.parent.parent.parent.parent for score in scores]
-        print divs[0]
-        print divs[0].getText()
+        # print divs[0]
+        return divs[0].getText()
 
-
-pf = ParseFiling()
-pf.find_div_with_text()

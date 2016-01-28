@@ -48,6 +48,3 @@ class IndexReader(object):
                 for file_dict in value:
                     print file_dict
 
-
-ir = IndexReader()
-ir.get_company('Google')
