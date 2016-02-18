@@ -22,14 +22,14 @@ test_set = [
 
 train_set_words = []
 for item in train_set:
-    words = item[0].split()
+    words = nltk.word_tokenize(item[0])
     for word in words:
         train_set_words.append(word)
 
-all_words = list(nltk.FreqDist(w.lower() for w in train_set_words))
-print all_words
+all_words = nltk.FreqDist(w.lower() for w in train_set_words)
+
 def tweet_features(tweet):
-    tweet_words = set(tweet)
+    tweet_words = tweet.split()
     features = {}
     for word in all_words:
         features['contains({})'.format(word)] = (word in tweet_words)
@@ -37,9 +37,8 @@ def tweet_features(tweet):
 
  
 feature_train_set = [(tweet_features(tweet), c) for (tweet, c) in train_set]
-print feature_train_set
 classifier = nltk.NaiveBayesClassifier.train(feature_train_set)
 feature_test_set = [(tweet_features(tweet), c) for (tweet, c) in test_set]
-print feature_test_set
 print(nltk.classify.accuracy(classifier, feature_test_set))
 classifier.show_most_informative_features(5)
+
