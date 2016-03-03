@@ -90,7 +90,7 @@ for word, freq in word_fd.iteritems():
         (freq, neg_word_count), total_word_count)
     word_scores[word] = pos_score + neg_score
 
-best = sorted(word_scores.iteritems(), key=lambda (w,s): s, reverse=True)[:10]
+best = sorted(word_scores.iteritems(), key=lambda (w,s): s, reverse=True)[:50]
 print best
 bestwords = set([w for w, s in best])
 print bestwords
